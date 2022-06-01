@@ -2,14 +2,12 @@ public class Productos {
     private int codigo;
     private String Producto;
     private int precio;
-    private int total;
+
 
     public Productos(int codigo , String Producto , int precio){
         this.codigo= codigo;
         this.Producto= Producto;
         this.precio= precio;
-
-
     }
 
 

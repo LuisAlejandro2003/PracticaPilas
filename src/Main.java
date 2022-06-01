@@ -11,7 +11,7 @@ public class Main {
     // LIFO Last In First Out
 
     public static void main(String[] args) {
-        List <Productos> lista = new LinkedList<Productos>();
+        //List <Productos> lista = new LinkedList<Productos>();
 
         byte opcion;
 
@@ -80,6 +80,7 @@ public class Main {
 
     public static void imprimirCarrito(){
         for(Productos Productos:lista){
+
             System.out.println("Codigo de barras: "+ Productos.getCodigo());
             System.out.println("Producto: "+ Productos.getProducto());
             System.out.println("Precio: "+ Productos.getPrecio());
@@ -88,13 +89,17 @@ public class Main {
     }
     public static void borrarProducto(){
 
-       // lista.remove(1);
+        lista.remove(1);
 
     }
     public static void hacerCobro(){
+        imprimirCarrito();
+        int acumulador=0;
+        for(Productos Productos:lista){
+            acumulador+= Productos.getPrecio();
 
-
-
+        }
+         System.out.println("El total es: " + acumulador);
     }
 
 
