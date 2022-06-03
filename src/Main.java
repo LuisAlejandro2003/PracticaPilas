@@ -11,13 +11,13 @@ public class Main {
     // LIFO Last In First Out
 
     public static void main(String[] args) {
-        //List <Productos> lista = new LinkedList<Productos>();
+
 
         byte opcion;
-
+        int opcionf = 0;
         do {
-            System.out.println("\n-----------------------");
-            System.out.println("MENU");
+
+            System.out.println("MENU");    //Menu principal
             System.out.println("1. Agregar producto");
             System.out.println("2. Ver carrito");
             System.out.println("3. Eliminar producto");
@@ -30,20 +30,29 @@ public class Main {
                     agregarProducto();
 
                     break;
-                case 2:
-                    imprimirCarrito();
+                case 2: imprimirCarrito();
                     break;
                 case 3:
                     borrarProducto();
                     break;
                 case 4:
                     hacerCobro();
+                    System.out.println("Gracias por su preferencia\n\n Desea repetir el sistema? \n 1. Si  2. No");  //Ciclo para que otro cliente vuelva a comprar
+                    opcionf = teclado.nextInt();
+                    if (opcionf == 1){
+                        lista.clear();
+
+
                     break;
+                    }
+                    else
+                        opcion=5;
+                    System.out.println("Cerrando programa");
 
 
 
             }
-        } while (opcion<15);
+        } while (opcion<5);
 
 
     }
@@ -79,27 +88,52 @@ public class Main {
     }
 
     public static void imprimirCarrito(){
+
         for(Productos Productos:lista){
 
-            System.out.println("Codigo de barras: "+ Productos.getCodigo());
-            System.out.println("Producto: "+ Productos.getProducto());
-            System.out.println("Precio: "+ Productos.getPrecio());
+            System.out.print("Codigo de barras: "+ Productos.getCodigo());
+            System.out.print(" | Producto: "+ Productos.getProducto());
+            System.out.print(" | Precio: $"+ Productos.getPrecio());
+            System.out.println("");
         }
 
     }
     public static void borrarProducto(){
+        int buscarId;
+        System.out.println("Ingrese el ID del producto que desea borrar: ");
+        buscarId = teclado.nextInt();
+        for (Productos Productos: lista) {
+            if (buscarId==lista.get(0).getCodigo()){
+                lista.remove(Productos);
+                System.out.println("El producto fue eliminado de su carrito");
+                break;
+            }
 
-        lista.remove(1);
+
+
+
+        }
+
 
     }
     public static void hacerCobro(){
-        imprimirCarrito();
-        int acumulador=0;
-        for(Productos Productos:lista){
-            acumulador+= Productos.getPrecio();
 
+
+        int acumulador=0;
+        System.out.println("*******************************");
+        System.out.println("TICKET :");
+
+        for(Productos Productos:lista){
+            System.out.print("Producto: "+ Productos.getProducto());
+            System.out.print(" | Precio: $"+ Productos.getPrecio());
+            System.out.println("");
+            acumulador+= Productos.getPrecio();
         }
-         System.out.println("El total es: " + acumulador);
+
+
+         System.out.println("El total es: $" + acumulador);
+         System.out.println("*******************************");
+
     }
 
 
